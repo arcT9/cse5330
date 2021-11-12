@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% set active_page = 'about' %}
+
+{% block title %} CSE 5330 {% endblock title %}
+
+{% block styles %}
+<style>
+    body {
+        background: #e2eafc
+    }
+    
+    .work {
+        font-size: 15px
+    }
+    
+    .about span {
+        font-size: 13px
+    }
+    
+    a {
+        color: blue;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    .box {
+        -webkit-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+        -moz-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+        box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72)
+    }
+    
+    .col-md-3 {
+        margin-top: 10px
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="container text-center mt-5 mb-2">
+            <h1 class="mb-0">Meet the team</h1><span>This Assignment/Project was done as part of CSE5330 at UT Arlington by -</span>
+        </div>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-3 offset-3">
+                   <div class="card">
+                    <div class="bg-white p-3 text-center rounded box"><img class="img-responsive rounded-circle" src="{{ url_for('static', filename='image/aneesh.jpg') }}" width="100">
+                        <h5 class="mt-3 name">Aneesh Melkot</h5><span class="work d-block">1001750503</span><span class="work d-block">Full Stack Developer</span>
+                        <div class="mt-4 about"><span>I want to change the world, but they didn't give me the source code.</span></div>
+                        <div class="mt-4">
+                            <h6 class="v-profile"><a href="https://www.linkedin.com/in/aneeshmelkot/">LinkedIn</a></h6>
+                        </div>
+                    </div>
+                   </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="bg-white p-3 text-center rounded box"><img class="img-responsive rounded-circle" src="{{ url_for('static', filename='image/sindoora.jpg') }}" width="100">
+                            <h5 class="mt-3 name">Sindoora Murthy</h5><span class="work d-block">1001862126</span><span class="work d-block">Developer</span>
+                            <div class="mt-4 about"><span>If you want the rainbow, you gotta put up with the rain.</span></div>
+                            <div class="mt-4">
+                                <h6 class="v-profile"><a href="https://www.linkedin.com/in/sindoora-murthy-computerscience/">LinkedIn</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed-bottom d-flex justify-content-center align-items-center">Made with &nbsp;<i
+                class="fas fa-heart" style="color: red;"></i>&nbsp; by Aneesh & Sindoora</div>
+    </div>
+{% endblock content %}

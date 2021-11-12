@@ -1,0 +1,104 @@
+{% extends 'admin/master.html' %}
+
+{% block head_css %}
+{{ super() }}
+{% endblock %}
+
+{% block head %}
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block title %}
+CSE5330 Project 2
+{% endblock %}
+
+{% block menu_links %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>You have reached the final part of the CSE5330 project. Feel free to explore all the tabs and mess around
+    with all the CRUD features.</p>
+  <p><a class="btn btn-info btn-lg" href="{{ url_for('index') }}" role="button">
+      <= Back to main site</a> </p> </div> <h3>Check Privilege</h3>
+        <br>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">User Deets</div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">User Name</label>
+                  <select id="user_privilege_dropdown" class="user_select form-control" id="exampleFormControlSelect1">
+
+                  </select>
+                </div>
+
+              </div>
+              <ul class="list-group">
+                <div id="user_privileges_results_panel"></div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">Role Deets</div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Role Name</label>
+                  <select id="role_privilege_dropdown" class="role_select form-control" id="exampleFormControlSelect1">
+
+                  </select>
+                </div>
+                <!-- <button type="button" class="btn btn-primary">Check</button> -->
+              </div>
+              <ul class="list-group">
+                <div id="role_privileges_results_panel"></div>
+              </ul>
+            </div>
+
+          </div>
+          <div class="col-lg-4">
+            <div id="boss_panel" class="panel panel-default">
+              <div class="panel-heading">User has Privilege?</div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">User Name</label>
+                  <select id='user_privilege_select' class="user_select form-control" id="exampleFormControlSelect1">
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Privilege</label>
+                  <select id='privilege_privilege_select' class="privilege_select form-control"
+                    id="exampleFormControlSelect1">
+                  </select>
+                </div>
+                <!-- <button id="check_btn" type="button" class="btn btn-info">Check</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="" style="position: fixed;
+        left: 50%;
+        bottom: 12px;
+        transform: translate(-50%, -50%);
+        margin: 0 auto;">
+          <div style="">
+            Made with &nbsp;<i class="fas fa-heart" style="color: red;"></i>&nbsp; by Archana Turaga
+          </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+          integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+        {% endblock %}
