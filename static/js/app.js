@@ -49,14 +49,14 @@ jQuery(document).ready(function ($) {
                 var $panel = $('#user_privileges_results_panel');
                 var privileges = '';
                 data.privileges.forEach(item => {
-                    privileges += `<span class="label label-info">${item}</span> `
+                    privileges += `<span class="label label-warning">${item}</span> `
                 })
                 var tableData = '';
                 if('owns' in data) {
                     tableData = `
                     <li class="list-group-item"
                     <h5>Owns</h5> : &nbsp;&nbsp; 
-                    <strong class=''>${data.owns.join(', ')}</strong>
+                    <strong>${data.owns.join(', ')}</strong>
                 </li>
                     `
                 } else {
@@ -65,7 +65,7 @@ jQuery(document).ready(function ($) {
                 var panel_data = `
                 <li class="list-group-item"
                     <h5>Role</h5> : &nbsp;&nbsp; 
-                    <strong class=''>${data.role}</strong>
+                    <strong>${data.role}</strong>
                 </li>
                 ${tableData}
                 <li class="list-group-item"
@@ -88,7 +88,7 @@ jQuery(document).ready(function ($) {
                 var privileges = '';
                 if(data.privileges[0] != null) {
                     data.privileges[0].forEach(item => {
-                        privileges += `<span class="label label-info">${item}</span> `
+                        privileges += `<span class="label label-primary">${item}</span> `
                     })
                 } else {
                     privileges = 'None'
@@ -113,7 +113,7 @@ jQuery(document).ready(function ($) {
                 var panel_data = `
                 <li class="list-group-item"
                     <h5>Privileges</h5> : &nbsp;&nbsp; 
-                    <strong class=''>${privileges}</strong>
+                    <strong>${privileges}</strong>
                 </li>
                 ${usersData}
                 `;
