@@ -49,7 +49,7 @@ jQuery(document).ready(function ($) {
                 var $panel = $('#user_privileges_results_panel');
                 var privileges = '';
                 data.privileges.forEach(item => {
-                    privileges += `<span class="label label-warning">${item}</span> `
+                    privileges += `<span class="label label-primary">${item}</span> `
                 })
                 var tableData = '';
                 if('owns' in data) {
