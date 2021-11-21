@@ -11,7 +11,6 @@ app.secret_key = os.urandom(32)
 
 db = db_init(app)
 
-# Inherited from ModelView
 class UserModelView(ModelView):
     form_columns = ('name', 'phone', 'role')
 
@@ -31,13 +30,12 @@ class TableConstraintsView(ModelView):
     column_exclude_list = None
     form_columns = ('table', 'role', 'privilege')
 
-# DB abstraction layer
-proj2 = Admin(app, name='CSE 5330 Project 2', template_mode='bootstrap3', url='/db_app', endpoint='proj2', index_view=AdminIndexView(url='/db_app', endpoint='proj2', template='admin/project_2.html'))
-proj2.add_view(UserModelView(User, db.session))
-proj2.add_view(RoleModelView(Role, db.session))
-proj2.add_view(PrivilegeModelView(Privilege, db.session))
-proj2.add_view(TableModelView(Table, db.session))
-proj2.add_view(TableConstraintsView(TableConstraint, db.session))
+project = Admin(app, name='CSE 5330 Project 2', template_mode='bootstrap3', url='/db_app', endpoint='proj2', index_view=AdminIndexView(url='/db_app', endpoint='proj2', template='admin/project_2.html'))
+project.add_view(UserModelView(User, db.session))
+project.add_view(RoleModelView(Role, db.session))
+project.add_view(PrivilegeModelView(Privilege, db.session))
+project.add_view(TableModelView(Table, db.session))
+project.add_view(TableConstraintsView(TableConstraint, db.session))
 
 @app.route('/')
 def index():
@@ -50,20 +48,20 @@ def about():
 @app.route('/getUsers')
 def get_users():
     data = User.query.all()
-    response = [item.format() for item in data]
-    return json.dumps(response)
+    result = [item.format() for item in data]
+    return json.dumps(result)
 
 @app.route('/getRoles')
 def get_roles():
     data = Role.query.all()
-    response = [item.format() for item in data]
-    return json.dumps(response)
+    result = [item.format() for item in data]
+    return json.dumps(result)
 
 @app.route('/getPrivileges')
 def get_privileges():
     data = Privilege.query.all()
-    response = [item.format() for item in data]
-    return json.dumps(response)
+    result = [item.format() for item in data]
+    return json.dumps(result)
 
 @app.route('/checkPrivilege/<int:user_id>')
 def check_privilege(user_id):
@@ -74,17 +72,17 @@ def check_privilege(user_id):
         JOIN user AS u ON u.role_id=r.id
         WHERE u.id={user_id}
     ''', con=db.session.connection())
-    response = {
+    result = {
         'user': privileges['u_name'].tolist()[0],
         'role': privileges['r_name'].tolist()[0],
         'privileges': privileges['p_name'].tolist()
     }
-    if response.get('role')=='db_owner':
+    if result.get('role')=='db_owner':
         table = pd.read_sql(f'''
         SELECT name from tables where owner_id={user_id}
         ''', con=db.session.connection())
-        response['owns']=table['name'].tolist()
-    return json.dumps(response)
+        result['owns']=table['name'].tolist()
+    return json.dumps(result)
 
 @app.route('/checkRolePrivilege/<int:role_id>')
 def check_role_privilege(role_id):
@@ -98,18 +96,18 @@ def check_role_privilege(role_id):
         SELECT name from user
         WHERE role_id={role_id}
     ''', con=db.session.connection())
-    response = {}
+    result = {}
     if not privileges.empty:
-        response['privileges'] = privileges.get('p_name').tolist(),
-        response['role'] = privileges.get('r_name').tolist()[0]
+        result['privileges'] = privileges.get('p_name').tolist(),
+        result['role'] = privileges.get('r_name').tolist()[0]
     else: 
-        response['privileges'] = None,
-        response['role'] = None
+        result['privileges'] = None,
+        result['role'] = None
     if not users.empty:
-        response['users'] = users.get('name').tolist()
+        result['users'] = users.get('name').tolist()
     else:
-        response['users'] = None
-    return json.dumps(response)
+        result['users'] = None
+    return json.dumps(result)
 
 @app.route('/checkUserPrivilege/<int:user_id>/<int:privilege_id>')
 def check_user_privilege(user_id, privilege_id):
